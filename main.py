@@ -21,12 +21,15 @@ def show_board(board: list) -> None:
     
 
 # Check if cell is empty
-def is_empty(move: tuple, board: list):
+def is_empty(move: tuple, board: list) -> bool:
     position = move[0]
     row = position // 3
     col = position % 3
+
     if board[row][col] == " ":
         return True
+    
+    return False
 
 
 # Get empty cells
@@ -42,10 +45,12 @@ def get_empty(board: list) -> list:
     
 
 # Check Tie
-def check_tie(board: list):
+def check_tie(board: list) -> bool:
     if len(get_empty(board)) <= 0:
         print("It´s a tie!")
         return True
+    
+    return False
 
 
 # Check for winn
