@@ -24,11 +24,11 @@ def get_empty(board: list) -> list:
 
 # Check Tie
 def is_tie(board: list) -> bool:
-    if len(get_empty(board)) <= 0:
-        print("It´s a tie!")
-        return True
-
-    return False
+    for each in board:
+        if " " in each:
+            return False
+    
+    return True
 
 def status(board: list, player: str) -> True:
     options = [
