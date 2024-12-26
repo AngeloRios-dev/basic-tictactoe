@@ -10,13 +10,15 @@ while True:
         break
     
     if check.is_tie(table):
+        print("No winner. It is a tie!".upper())
         break
 
     moves.computer(table)
     show.board(table)
     if check.status(table, "O"):
-        print("You lost! Computer wins.".upper())
+        print("You lost! Computer wins.")
         break
 
     if check.is_tie(table):
+        print("No winner. It is a tie!".upper())
         break
