@@ -24,8 +24,8 @@ def get_empty(board: list) -> list:
 
 # Check Tie
 def is_tie(board: list) -> bool:
-    for each in board:
-        if " " in each:
+    for row in board:
+        if " " in row:
             return False
     
     return True
