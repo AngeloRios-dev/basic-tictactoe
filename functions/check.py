@@ -30,7 +30,7 @@ def is_tie(board: list) -> bool:
     
     return True
 
-def status(board: list, player: str) -> True:
+def status(board: list, player: str) -> bool:
     options = [
         [(0, 0), (0, 1), (0, 2)],
         [(1, 0), (1, 1), (1, 2)],
