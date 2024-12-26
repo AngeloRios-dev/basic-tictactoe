@@ -42,12 +42,8 @@ def status(board: list, player: str) -> bool:
         [(0, 2), (1, 1), (2, 0)],
     ]
     for option in options:
-        win = True
         for each in option:
             row, col = each
             if board[row][col] != player:
-                win = False
-                break
-        if win:
-            return True
+                return True
     return False
