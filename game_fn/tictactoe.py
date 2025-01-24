@@ -149,7 +149,6 @@ class TicTacToe:
             self.board[row][col] = player
         else:
             print("CELDA NO DISPONIBLE!")
-            self.human()
 
     def human(self) -> None:
         """
@@ -195,16 +194,13 @@ class TicTacToe:
             self.show_board()
             if self.current_player == "X":
                 self.human()
-                if self.game_status():
-                    self.show_board()
-                    break
 
             else:
                 self.computer()
-                if self.game_status():
-                    self.show_board()
-                    break
             
+            if self.game_status():
+                self.show_board()
+                break
             self.switch_player()
 
             
