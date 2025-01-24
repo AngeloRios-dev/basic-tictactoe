@@ -51,6 +51,12 @@ class TicTacToe:
     
     # Checks
     def check_winner(self) -> bool:
+        """ Verifica si existe un ganador segun las espesificaciones
+
+        Retorna
+        --------
+        bool
+        """
         options = [
             [(0, 0), (0, 1), (0, 2)],
             [(1, 0), (1, 1), (1, 2)],
@@ -68,26 +74,74 @@ class TicTacToe:
         return False
     
     def is_tie(self) -> bool:
-        """ Verificar si el juego esta empatado """
+        """ Verificar si el juego esta empatado 
+        Si no existe un elemento en blanco en la lista
+        del tablero y se puede considerar como empate.
+
+        Retorna
+        --------
+        bool
+        """
         for row in self.board:
             if " " in row:
                 return False
-        print("EMPATE!")
         return True
+    
+    def game_status(self) -> bool:
+        """ Verifica el estado del juego
+        Se llaman las funciones para verificar si
+        hay un ganador o si el juego esta empatado.
+
+        Funciones
+        ----------
+        check_winner()
+        is_tie()
+
+        Retorna
+        ---------
+        bool
+        """
+        if self.check_winner():
+            print(f"El ganador es {self.winner}")
+            return True
+        
+        if self.is_tie():
+            print("EMPATE!")
+            return True
+        
+        return False
+
+
     
     def valid_entry(self, number: int) -> bool:
         """
         Verificar que la entrada del usuario sea correcta.
-        Debe ser un numero mayor o igual a 1
-        Debe ser un numero menor o igual a 9
+
+        Parametros
+        -----------
+        number: int
+            Debe ser un numero mayor o igual a 1 y
+            menor o igual a 9.
+
+        Retorno
+        ----------
+        bool
         """
         return 0 <= number <= 8
 
     # Make Moves
     def make_move(self, spot: int, player: str) -> None:
         """
-        Verifica si la posicion que le se pasa por tupla 
+        Verifica si la posicion que le se pasa
         se encuentra disponible en el tablero
+
+        Parametros
+        -----------
+        spot: int
+            La celda del tablero donde se realizara el movimiento.
+        
+        player: str
+            String con la letra del jugador de turno ("X", "O")
         """
         row = spot // 3
         col = spot % 3
@@ -100,8 +154,12 @@ class TicTacToe:
     def human(self) -> None:
         """
         Pide al usuario seleccionar un numero,
-        si el numero se encuentra disponible,
-        realiza en movimiento en el tablero
+        para realizar el movimiento en el tablero.
+
+        Raises
+        -------
+        ValueError:
+            Si la entrada no es numerica.
         """
         print("Selecciona un numero entre 1 y 9: ")
         while True:
@@ -110,8 +168,8 @@ class TicTacToe:
                 if self.valid_entry(human_move):
                     self.make_move(human_move, "X")
                     break
-                else:
-                    print("Fuera de rango!")
+
+                print("Fuera de rango!")
             except ValueError:
                 print("Valores validos del 1 al 9")
 
@@ -132,24 +190,20 @@ class TicTacToe:
         
     # Bucle principal play game
     def play_game(self) -> None:
+        """ Ciclo principal para ejecutar la logica del juego. """
         while True:
             self.show_board()
             if self.current_player == "X":
                 self.human()
-                if self.is_tie():
+                if self.game_status():
                     self.show_board()
                     break
 
             else:
                 self.computer()
-                if self.is_tie():
+                if self.game_status():
                     self.show_board()
                     break
-
-            if self.check_winner():
-                self.show_board()
-                print(f"El ganador es {self.winner}")
-                break
             
             self.switch_player()
 
